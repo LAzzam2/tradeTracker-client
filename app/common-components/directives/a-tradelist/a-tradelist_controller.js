@@ -111,7 +111,10 @@
 		    var sum = 0;
 		    angular.forEach(data,function(value){
 		    	if(value['price'] && value['quantity']){
+		    		var sumPrev = sum;
+
 			        sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
+			        console.log( sumPrev, sum );
 		        }
 		    });
 		    return sum;
