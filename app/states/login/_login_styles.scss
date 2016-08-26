@@ -1,0 +1,43 @@
+// _login_style.scss
+
+.auth-options {
+	align-items: center;
+
+	display: flex;
+	cursor: hand;
+	cursor: pointer;
+
+	font-family: sans-serif;
+	.auth-label,
+	.auth-swap-btn {
+		opacity: 0.4;
+
+		color: $dark-grey;
+		font-weight: 100;
+
+		transition: all 250ms ease-out;
+	}
+	.auth-label {
+		margin-top: 15px;
+	}
+	.auth-swap-btn {
+		opacity: 0;
+		top: -5px;
+		margin-top: 8px;
+		padding: 5px 10px;
+		border: 1px solid $light-grey;
+		border-radius: 5px;
+	}
+}
+.auth-options:hover {
+	.auth-label {
+		opacity: 1;
+	}
+	.auth-swap-btn {
+		opacity: 0.4;
+		top: 0;
+	}
+	.auth-swap-btn:hover {
+		opacity: 1;
+	}
+}

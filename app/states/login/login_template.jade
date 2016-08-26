@@ -1,0 +1,30 @@
+.login-app-sprout-logo( ui-sref='homepage' )
+.login
+	h3 Login
+	form( name='form', novalidate='' )
+		.login-form
+			.login-email
+				input( type='text', name='email', required='', placeholder='Email', ng-model='email' )
+				.form-error( ng-show='form.email.$error.email' )
+					| Invalid email.
+				.form-error( ng-show='form.$submitted && !form.email.$error.email' )
+					div( ng-show='form.password.$error.required' )
+						| Your email is required.
+			hr.login-rule
+			.login-password
+				input( type='password', name='password', required='', placeholder='Password', ng-model='password' )
+				.form-error( ng-show='form.$submitted && !form.email.$error.email' )
+					div( ng-show='form.password.$error.required' )
+						| Your password is required.
+		.login-login-button.big-green-button( ng-click='loginUser(  )' )
+			.button-text( ng-hide='loading' )
+				| Login
+			.button-loading( ng-show='loading' )
+				spinner
+			input.account-save-submit( type='submit' )
+	.auth-options
+		.auth-label
+			| Not yet a member?
+		.login-register-button.auth-swap-btn( ui-sref='register' )
+			| Register
+	

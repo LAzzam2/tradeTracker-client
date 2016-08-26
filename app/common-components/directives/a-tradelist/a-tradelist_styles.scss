@@ -1,0 +1,213 @@
+.add-trade,
+.trade {
+	// box-shadow: $shadow;
+	transition: $hover-transition;
+}
+.add-trade:hover,
+.trade:hover {
+	box-shadow: $shadow-hover;
+}
+
+.tracker-tradelist {
+	width: 100%;
+	margin-top: 120px;
+	margin-left: auto;
+	padding: 0 $padding;
+}
+
+.trades {
+	width: 100%;
+	max-width: 960px;
+	margin: 0px auto;
+	padding: 25px 0px;
+	select {
+		-webkit-appearance: none;
+	}
+	input,
+	select {
+		align-items: center;
+
+		padding: 5px 0px;
+		outline: 0;
+		border: 0;
+		background: transparent;
+
+		font-size: 12px;
+		line-height: 20px;
+	}
+
+	.label {
+		display: none;
+		margin-bottom: 15px;
+	}
+	.trade,
+	.add-trade {
+		margin-bottom: 30px;
+		border-radius: 5px;
+	}
+	.add-trade {
+		padding: calc( #{$padding} * calc(1.5/3) ) $padding;
+		background-color: #f2f2f2;
+	}
+	.trade:last-of-type {
+		margin-bottom: 0px;
+	}
+}
+.add-trade {
+	input {
+		font-weight: bold;
+		font-size: 24px;
+		text-transform: uppercase;
+	}
+	input::placeholder {
+		text-transform: lowercase;
+	}
+	.header {
+		margin-right: auto;
+	}
+}
+.trade {
+	@include shadow(1);
+
+	flex-flow: row;
+	flex-wrap: wrap;
+
+	display: flex;
+	cursor: pointer;
+	cursor: hand;
+	background-color: white;
+
+	&:hover,
+	&:focus {
+		@include shadow(3);
+
+		transform: translateY(-1px);
+	}
+	.header {
+		flex-flow: row;
+		align-items: center;
+
+		display: flex;
+		width: 100%;
+		.delete {
+			width: 20px;
+		}
+	}
+	.meta {
+		font-family: sans-serif;
+	}
+	.meta,
+	.ticker .meta {
+		width: inherit;
+		margin-left: auto;
+	}
+	.ticker {
+		width: auto;
+		input {
+			padding-left: 0px;
+			border-radius: 0px;
+			background: transparent;
+
+			font-size: 16px;
+		}
+	}
+	.ticker-label {
+		box-sizing: border-box;
+		margin: 0px;
+		padding: 0px;
+
+		text-transform: uppercase;
+	}
+	.header {
+		padding: $padding;
+	}
+	.actions {
+		width: calc( 100% - 10px );
+		margin: 0px auto 5px auto;
+		.action {
+			flex-flow: row;
+
+			display: flex;
+			width: 100%;
+			margin-bottom: 5px;
+			padding: 5px 0px;
+			border-bottom: 1px solid #ccc;
+			border-radius: 2px;
+			background-color: #ddd;
+			div:first-of-type {
+				padding-left: calc( #{$padding} - 5px );
+			}
+			div:last-of-type {
+				margin-right: 0px;
+			}
+		}
+		.action:last-of-type {
+			margin-bottom: 0px;
+			border-bottom: 0px;
+		}
+		.pos {
+			border-left: 5px solid $mint;
+		}
+		.neg {
+			border-left: 5px solid $pred;
+		}
+		.value {
+			justify-content: center;
+
+			font-weight: bold;
+			font-family: $sans-serif;
+		}
+	}
+	.action div,
+	.meta, {
+		box-sizing: border-box;
+		width: 33%;
+		padding-left: 15px;
+	}
+	.meta {
+		width: calc( 33% - 20px );
+	}
+	.action div:first-of-type {
+		padding-left: 0px;
+	}
+	button {
+		margin-bottom: 15px;
+		margin-left: auto;
+	}
+}
+.trade.ng-leave {
+	opacity: 1;
+
+	transition: 0.5s linear all;
+}
+.trade.ng-leave.ng-leave-active {
+	opacity: 0;
+}
+
+
+button {
+	cursor: hand;
+	cursor: pointer;
+	padding: 5px 15px;
+	outline: 0;
+	border: 0;
+	border: 1px solid #f2f2f2;
+	border-radius: 3px;
+	background-color: white;
+
+	text-align: center;
+
+	transition: 0.3s;
+}
+button:hover {
+	box-shadow: 0px 3px 10px rgba( 0, 0, 0, 0.05 );
+}
+
+@media (max-width: $media-phone) {
+	.tracker-tradelist {
+		margin-top: 196px;
+	}
+	form {
+		margin-top: 245px;
+	}
+}

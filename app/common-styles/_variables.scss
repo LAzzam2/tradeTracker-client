@@ -1,0 +1,56 @@
+// Colors
+$background: #e4e4e4;
+$dark-grey: #6b6b6b;
+$light-grey: #a9a9a9;
+$green: #688e5c;
+$dark: #7b7b7b;
+$red: #eb7c7c;
+$white: rgba( 255, 255, 255, 1 );
+$tcgblue: #1a4584;
+$dark-blue: #0d0f2d;
+$border-grey: #ddd;
+$mint: #22bd90;
+$pred: #f46868;
+$lightBlue: #459fe3;
+
+// Formatting
+$padding: 30px;
+$media-phone: 760px;
+$navwidth: 300px;
+
+
+// Styles / Animation
+$shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 7px 0 rgba(0,0,0,0.1);
+$shadow-hover: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+$hover-transition: box-shadow  0.3s cubic-bezier(0.25,0.8,0.25,1), transform 0.3s cubic-bezier(0.25,0.8,0.25,1);
+
+
+// Fonts
+
+$sans-serif: sans-serif;
+$muli: 'Muli', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+$helvetica-ultra-light: 'HelveticaNeue-UltraLight', 'Helvetica Neue Ultra Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+$helvetica-thin: 'HelveticaNeue-Thin', 'Helvetica Neue Thin', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+$helvetica-light: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+$helvetica: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+$helvetica-medium: 'HelveticaNeue-Medium', 'Helvetica Neue Medium', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+$helvetica-bold: 'HelveticaNeue-Bold', 'Helvetica Neue Bold', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+
+
+@mixin shadow($level: 1) {
+	@if $level == 1 {
+		box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.14);
+	}
+	@else if $level == 2 {
+		box-shadow: 0 3px 6px rgba(0,0,0,0.06), 0 3px 6px rgba(0,0,0,0.13);
+	}
+	@else if $level == 3 {
+		box-shadow: 0 10px 20px rgba(0,0,0,0.09), 0 6px 6px rgba(0,0,0,0.13);
+	}
+	@else if $level == 4 {
+		box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12);
+	}
+	@else if $level == 5 {
+		box-shadow: 0 19px 38px rgba(0,0,0,0.20), 0 15px 12px rgba(0,0,0,0.12);
+	}
+}

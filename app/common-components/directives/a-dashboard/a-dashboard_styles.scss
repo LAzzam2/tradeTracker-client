@@ -1,0 +1,87 @@
+a-dashboard {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	right: 0;
+	z-index: 10;
+	background-color: $white;
+}
+
+.pos {
+	color: $mint;
+}
+.neg {
+	color: $pred;
+}
+
+.dashboard {
+	flex-flow: row;
+	align-items: center;
+	justify-content: center;
+
+	display: flex;
+	width: 100%;
+	margin-left: auto;
+	padding: 0px $padding;
+	li {
+		box-sizing: border-box;
+		cursor: hand;
+		cursor: pointer;
+		margin-right: 5px;
+		padding: $padding/2 $padding*2;
+		border-right: 1px solid #ddd;
+
+		color: $dark-grey;
+		font-weight: 100;
+		font-family: $sans-serif;
+
+		transition: $hover-transition;
+	}
+	li:last-of-type {
+		margin-right: 0px;
+		border-right: 0px solid $dark-grey;
+	}
+	.label {
+		margin-bottom: 5px;
+
+		font-weight: bold;
+		font-size: 13px;
+	}
+	.value {
+		font-weight: 100;
+		font-size: 34px;
+		text-align: center;
+	}
+	.average-win {
+		.label {
+			color: $mint;
+		}
+	}
+	.average-loss {
+		.label {
+			color: $pred;
+		}
+	}
+}
+
+@media (max-width: $media-phone) {
+	.dashboard {
+		flex-flow: row;
+		flex-wrap: wrap;
+
+		width: 100%;
+		padding: 0px;
+
+		text-align: left;
+		li,
+		li:last-of-type {
+			width: 50%;
+			max-width: inherit;
+			margin: 0;
+			border-radius: 0px;
+		}
+		.label {
+			font-size: 11px;
+		}
+	}
+}

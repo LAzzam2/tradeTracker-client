@@ -1,0 +1,44 @@
+body {
+	background-color: $background;
+}
+
+nav {
+	flex-flow: column;
+	flex-wrap: wrap;
+
+	position: fixed;
+	pointer-events: none;
+	width: $navwidth;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	border-bottom: 1px solid $border-grey;
+
+	color: $white;
+	font-weight: bold;
+	font-family: $sans-serif;
+	.nav-logo-text {
+		padding: $padding;
+		background-color: $white;
+
+		color: $mint;
+		font-weight: 100;
+		font-size: 24px;
+		font-family: $sans-serif;
+	}
+}
+
+.nav-items {
+	display: none;
+	margin: $padding 0px;
+	> div {
+		cursor: hand;
+		cursor: pointer;
+		margin-right: 25px;
+		padding: $padding;
+	}
+	> div:last-of-type {
+		margin-right: $padding;
+	}
+}

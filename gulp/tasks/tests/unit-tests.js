@@ -1,0 +1,39 @@
+'use strict';
+
+var gulp            = require('gulp');
+var Karma           = require('karma').Server;
+var inject          = require('gulp-inject');
+var angularFilesort = require('gulp-angular-filesort');
+var es              = require('event-stream');
+
+var path            = require('../../paths.js');
+
+
+
+gulp.task('karma-inject', function() {
+	var appJsSource    = gulp.src([path.to.destination + '/**/*.js', '!' + path.to.destination + '/bower/**/*.*']);
+	var sortedAppJs    = appJsSource.pipe(angularFilesort());
+
+	var bowerSource    = gulp.src([path.to.bower.scripts], { read: false });
+
+	var unitTestsSrc   = gulp.src([path.to.tests.unit], { read: false });
+
+	var allJs = es.merge(sortedAppJs, bowerSource, unitTestsSrc);
+
+	gulp.src(path.to.tests.karmaConfig)
+		.pipe(inject(allJs, {
+			starttag: 'files: [',
+			endtag: ']',
+			transform: function(filepath, file, i, length) {
+				return '"..' + filepath + '"' + (i + 1 < length ? ',' : '');
+			}
+		}))
+		.pipe(gulp.dest('./tests/'));
+});
+
+gulp.task('unit-tests', ['karma-inject'], function(done) {
+	new Karma({
+		configFile: path.to.tests.karmaConfig,
+		singleRun: true
+	}, done).start();
+});
