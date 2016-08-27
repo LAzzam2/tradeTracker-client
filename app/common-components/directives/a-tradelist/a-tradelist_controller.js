@@ -51,10 +51,6 @@
 		};
 
 		$scope.addTradeAction = function( e, item, action, index ) {
-		
-			
-
-			console.log( 'price: ', action.price, 'quantity: ', action.quantity );
 			if( action.price ){
 				// Check if user wants to delete action
 				if( action.quantity == '0' || action.quantity == '' ) {
@@ -70,9 +66,9 @@
 						});
 						item.actions.splice(index,1);
 				}
-				// Check if this action opens / continues / closes a trade
+				// Check if action closes trade
 				if( getTradeStatus( item ) != 'closed' ){
-					// If trade not closed, insert empty action to actions to be able to continue trade
+					// If trade not closed, insert empty action to continue trade
 					var newItem = item.actions;
 					if( newItem[newItem.length - 1].price && newItem[newItem.length - 1].quantity ){
 						newItem.push({ price: '', quantity: ''});
@@ -80,7 +76,6 @@
 				}
 
 				item.tradeValue = calculateTrade( item );
-				console.log(getTradeStatus(item));
 				$scope.saveTradelist(item, index);
 				$rootScope.$broadcast('tradeActionUpdated', { tradelist: $scope.tradelist });
 			}
@@ -109,15 +104,32 @@
 		    if (angular.isUndefined(data) && angular.isUndefined('price')  && angular.isUndefined('quantity')) 
 		        return 0; 
 		    var sum = 0;
+		    var sumOld = 0;
 		    angular.forEach(data,function(value){
 		    	if(value['price'] && value['quantity']){
-		    		var sumPrev = sum;
+		    		sumOld = sum;
+		    		var price = (parseInt(value['price']) * parseInt(value['quantity']))*-1;
+		    		var sumNew = sum + price;
+		    		var tradeStatus = getTradeStatus( item );
 
-			        sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
-			        console.log( sumPrev, sum );
+		    		if( tradeStatus == 'long' ){
+		    			console.log('long', sumNew, sumOld);
+				        if( sumNew < sumOld ){
+				        	sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
+				        }
+			        }else if( tradeStatus == 'short' ){
+		    			console.log('short');
+			        	if( sumNew > sumOld ){
+				        	sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
+				        }
+			        }else if( tradeStatus == 'closed' ){
+			        	sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
+			        }
 		        }
 		    });
-		    return sum;
+		    if( sumOld != 0 ){
+		    	return sum;
+		    }
 		}
 
 		var saveTradelistItemAnimation = function(index) {
@@ -197,7 +209,7 @@
 
 				updateTradelistCopy();
 
-				saveTradelistItemAnimation(index);
+				// saveTradelistItemAnimation(index);
 			});
 		};
 

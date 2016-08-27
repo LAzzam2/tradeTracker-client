@@ -3,23 +3,27 @@
 	// box-shadow: $shadow;
 	transition: $hover-transition;
 }
-.add-trade:hover,
-.trade:hover {
-	box-shadow: $shadow-hover;
+.add-trade {
+	position: absolute;
+	width: 100%;
+	max-width: 630px;
+	z-index: 15;
 }
+// .add-trade:hover,
+// .trade:hover {
+// 	box-shadow: $shadow-hover;
+// }
 
 .tracker-tradelist {
 	width: 100%;
-	margin-top: 120px;
 	margin-left: auto;
-	padding: 0 $padding;
 }
 
 .trades {
-	width: 100%;
-	max-width: 960px;
-	margin: 0px auto;
-	padding: 25px 0px;
+	position: relative;
+	width: calc(100% - 300px - #{$padding});
+	margin-left: auto;
+	padding: $padding 0px;
 	select {
 		-webkit-appearance: none;
 	}
@@ -35,10 +39,12 @@
 		font-size: 12px;
 		line-height: 20px;
 	}
-
 	.label {
 		display: none;
 		margin-bottom: 15px;
+	}
+	> li:nth-of-type(2) {
+		margin-top: 65px + $padding;
 	}
 	.trade,
 	.add-trade {
@@ -51,6 +57,10 @@
 	}
 	.trade:last-of-type {
 		margin-bottom: 0px;
+	}
+	.delete {
+		color: grey;
+		font-family: $sans-serif;
 	}
 }
 .add-trade {
@@ -77,12 +87,12 @@
 	cursor: hand;
 	background-color: white;
 
-	&:hover,
-	&:focus {
-		@include shadow(3);
+	// &:hover,
+	// &:focus {
+	// 	@include shadow(3);
 
-		transform: translateY(-1px);
-	}
+	// 	transform: translateY(-1px);
+	// }
 	.header {
 		flex-flow: row;
 		align-items: center;

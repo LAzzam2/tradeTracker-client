@@ -2,16 +2,21 @@ body {
 	background-color: $background;
 }
 
+.app-content {
+	flex-flow: row;
+
+	width: 100%;
+	max-width: 960px;
+	margin: 100px auto;
+}
+
 nav {
 	flex-flow: column;
 	flex-wrap: wrap;
 
 	position: fixed;
 	pointer-events: none;
-	width: $navwidth;
-	height: 100%;
-	top: 0;
-	left: 0;
+	width: 100%;
 	z-index: 50;
 	border-bottom: 1px solid $border-grey;
 

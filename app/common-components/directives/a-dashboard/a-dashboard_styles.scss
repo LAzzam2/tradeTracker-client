@@ -1,10 +1,10 @@
 a-dashboard {
 	position: fixed;
-	width: 100%;
-	top: 0;
-	right: 0;
+	width: 300px;
+	margin: $padding 0px;
+	padding: $padding;
 	z-index: 10;
-	background-color: $white;
+	background: white;
 }
 
 .pos {
@@ -15,21 +15,15 @@ a-dashboard {
 }
 
 .dashboard {
-	flex-flow: row;
-	align-items: center;
-	justify-content: center;
+	flex-flow: column;
 
 	display: flex;
-	width: 100%;
-	margin-left: auto;
-	padding: 0px $padding;
 	li {
 		box-sizing: border-box;
 		cursor: hand;
 		cursor: pointer;
 		margin-right: 5px;
-		padding: $padding/2 $padding*2;
-		border-right: 1px solid #ddd;
+		margin-bottom: 15px;
 
 		color: $dark-grey;
 		font-weight: 100;
@@ -39,6 +33,7 @@ a-dashboard {
 	}
 	li:last-of-type {
 		margin-right: 0px;
+		margin-bottom: 0px;
 		border-right: 0px solid $dark-grey;
 	}
 	.label {
@@ -49,8 +44,8 @@ a-dashboard {
 	}
 	.value {
 		font-weight: 100;
-		font-size: 34px;
-		text-align: center;
+		font-size: 18px;
+		letter-spacing: 0.5px;
 	}
 	.average-win {
 		.label {
@@ -72,7 +67,6 @@ a-dashboard {
 		width: 100%;
 		padding: 0px;
 
-		text-align: left;
 		li,
 		li:last-of-type {
 			width: 50%;
