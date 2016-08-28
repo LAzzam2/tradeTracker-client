@@ -6,7 +6,6 @@
 	var discover = angular.module('discover');
 
 	discover.controller('DiscoverController', function($scope) {
-		$scope.stateName = 'Discover';
 	});
 
 })();

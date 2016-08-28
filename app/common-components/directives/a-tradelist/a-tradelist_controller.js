@@ -6,10 +6,15 @@
 	var aTradelist = angular.module('aTradelist');
 	aTradelist.controller('ATradelistController', function( $scope, $rootScope, tradelistFactory, $timeout) {
 
+		$scope.subState = $scope.$parent;
+		
 		$scope.tradelist = [];
 		$scope.newItem = '';
 
 		$scope.currentDate = moment().format("M/D/YY");
+
+		
+		console.log($scope.auth);
 
 		var tradelistCopy;
 
@@ -44,7 +49,7 @@
 
 			var newItem = {
 				name: itemValue,
-				actions: [{ date: moment().format("M/D/YY"), price: '', quantity: ''}],
+				actions: [{ price: '', quantity: ''}],
 				tradeValue: ''
 			};
 
@@ -76,8 +81,18 @@
 						var newItem = item.actions;
 						if( newItem[newItem.length - 1].price && newItem[newItem.length - 1].quantity ){
 							console.log(item.actions[item.actions.length-1].date);
-							newItem.push({ date: item.actions[item.actions.length-1].date, price: '', quantity: ''});
+							newItem.push({ price: '', quantity: ''});
 						}
+					}
+					else {
+						var data = item.actions;
+						angular.forEach(data,function(value){
+					    	if( !value['quantity'] || !value['price'] ){
+					    		var index = item.actions.indexOf(value)
+					    		item.actions.splice(index, 1);
+					    		console.log(value);
+					        }
+					    });
 					}
 					item.tradeValue = calculateTrade( item );
 					item.direction = getTradeStatus( item ).direction;

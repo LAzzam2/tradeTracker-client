@@ -6,6 +6,8 @@
 	var aDashboard = angular.module('aDashboard');
 	aDashboard.controller('ADashboardController', function( $scope, $rootScope, tradelistFactory, $timeout) {
 
+		$scope.subState = $scope.$parent;
+
 		$scope.accountValue;
 		$scope.avgWin;
 		$scope.avgLoss;

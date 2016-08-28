@@ -1,8 +1,7 @@
-ul.trades
-	li.add-trade()
+ul.tracker.trades( ng-show="subState.tracker" )
+	li.add-trade
 		//- ul.header
 		//- 	li Add Trade
-		h5 {{ state }}
 		div.ticker
 			input(type="text", autocomplete="off", class="ticker-label", name="ticker", placeholder="Add Trade", ng-enter='addNewTradelistItem(newItem)', ng-model='newItem' )
 	li.trade(ng-repeat='item in tradelist | reverse')
@@ -14,11 +13,11 @@ ul.trades
 				li.trade-total( ng-show="item.tradeValue" ng-class="{ pos: item.tradeValue > 0, neg: item.tradeValue < 0 }" ) {{ item.tradeValue }}
 				li.trade-total( ng-show="!item.tradeValue" )( ng-class="{ pos: item.tradeValue > 0, neg: item.tradeValue < 0 }" ) {{ item.direction }} {{ item.count }}
 			div.delete( ng-click='deleteTradelistItem(item, $index)' )
-				| X
+				| &#10005;
 		ul.actions
 			li.action( ng-repeat="action in item.actions" )
 				div.action-item.date
-					datepicker( date-format="M/d/yy" date-min-limit="{{ currentDate }}" )
+					datepicker( date-format="M/d/yy" )
 						input( ng-model='action.date' type='text' ng-change='addTradeAction($event, item, action, $index)' placeholder="{{currentDate}}"  )
 				div.action-item.quantity
 					//- span.label q
@@ -29,3 +28,41 @@ ul.trades
 				div.action-item.value
 					//- span.label p/l
 					p( ng-if="action.price" ) {{ action.price * action.quantity * -1}}
+			//- li.action.new
+				div.action-item.date
+					datepicker( date-format="M/d/yy" )
+						input( ng-model='action.date' type='text' ng-change='addTradeAction($event, item, action, $index)' placeholder="{{currentDate}}"  )
+				div.action-item.quantity
+					//- span.label q
+					input(type="text", autocomplete="off", name="quantity", placeholder="Lot Size", ng-model='action.quantity', ng-blur='addTradeAction($event, item, action, $index)')
+				div.action-item.price
+					//- span.label p
+					input(type="text", autocomplete="off", name="price" placeholder="Price", ng-model='action.price', ng-blur='addTradeAction($event, item, action, $index)', ng-enter='addTradeAction($event, item, action, $index)')
+				div.action-item.value
+					//- span.label p/l
+					p( ng-if="action.price" ) {{ action.price * action.quantity * -1}}
+	li.trade.empty( ng-hide="tradelist.length > 0" )
+		h3 You haven't made any trades yet. Add a symbol to get started.
+
+ul.discover.trades( ng-show="subState.discover" )
+	li.trade(ng-repeat='item in tradelist | reverse')
+		.header
+			div.ticker
+				//- span.label Ticker
+				p(class="ticker-label") {{ item.name }}
+			ul.meta
+				li.trade-total( ng-show="item.tradeValue" ng-class="{ pos: item.tradeValue > 0, neg: item.tradeValue < 0 }" ) {{ item.tradeValue }}
+				li.trade-total( ng-show="!item.tradeValue" )( ng-class="{ pos: item.tradeValue > 0, neg: item.tradeValue < 0 }" ) {{ item.direction }} {{ item.count }}
+		ul.actions
+			li.action( ng-repeat="action in item.actions" ng-if="action.quantity && action.price")
+				div.action-item.date
+					p {{ action.date }}
+				div.action-item.quantity
+					p {{ action.quantity }}
+				div.action-item.price
+					p {{ action.price }}
+				div.action-item.value
+					//- span.label p/l
+					p( ng-if="action.price" ) {{ action.price * action.quantity * -1}}
+	li.trade.empty( ng-hide="tradelist.length > 0" )
+		h3 No trades in this community... yet.

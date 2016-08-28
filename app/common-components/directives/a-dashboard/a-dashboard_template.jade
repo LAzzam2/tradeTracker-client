@@ -1,5 +1,6 @@
 ul.dashboard
-	//- h2 Stats
+	h2( ng-show="subState.tracker" ) Personal Stats
+	h2( ng-show="subState.discover" ) Community Stats
 	li.account-total
 		span.label( ng-class=" { pos: accountValue > 0, neg: accountValue < 0 } " ) P/L Total
 		p.value( ng-class=" { pos: accountValue > 0, neg: accountValue < 0 } " ) {{ accountValue }}

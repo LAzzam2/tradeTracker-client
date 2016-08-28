@@ -19,7 +19,7 @@
 			views: {
 				'app-content': {
 					templateUrl: 'states/app-root/discover/discover_template.html',
-					controller: 'DiscoverController as Discover'
+					controller: 'DiscoverController as discover'
 				}
 			}
 		});

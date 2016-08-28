@@ -6,7 +6,7 @@
 	var tracker = angular.module('tracker');
 
 	tracker.controller('TrackerController', function($scope) {
-		$scope.stateName = 'tracker';
+		$scope.subState = 'tracker';
 	});
 
 	function addTrade(){
