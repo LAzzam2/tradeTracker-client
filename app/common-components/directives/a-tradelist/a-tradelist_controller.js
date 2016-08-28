@@ -81,6 +81,7 @@
 					}
 					item.tradeValue = calculateTrade( item );
 					item.direction = getTradeStatus( item ).direction;
+					item.count = getTradeStatus( item ).count;
 					$scope.saveTradelist(item, index);
 					$rootScope.$broadcast('tradeActionUpdated', { tradelist: $scope.tradelist });
 				}
@@ -98,11 +99,11 @@
 		        }
 		    });
 		    if ( sum == 0 ){
-		    	return {direction:'closed', quantity:sum};
+		    	return {direction:'closed', count:sum};
 		    } else if ( sum < 0){
-		    	return {direction:'short', quantity:sum};
+		    	return {direction:'short', count:sum};
 		    } else if ( sum > 0 ){
-		    	return {direction:'long', quantity:sum};
+		    	return {direction:'long', count:sum};
 		    }
 		}
 
@@ -151,7 +152,6 @@
 		};
 
 		$scope.saveTradelist = function(item, index) {
-			console.log(item);
 			// If trying to save a newly created list item with no value,
 			// don't do anything.
 			if ((item.name === undefined) && (item._id === undefined)) {
