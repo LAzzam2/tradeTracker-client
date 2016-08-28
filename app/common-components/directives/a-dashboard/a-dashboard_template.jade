@@ -1,10 +1,11 @@
 ul.dashboard
+	//- h2 Stats
 	li.account-total
 		span.label( ng-class=" { pos: accountValue > 0, neg: accountValue < 0 } " ) P/L Total
 		p.value( ng-class=" { pos: accountValue > 0, neg: accountValue < 0 } " ) {{ accountValue }}
 	li.average-trade-size
 		span.label Avg. Trade Size
-		p.value( ) 0
+		p.value( ) {{ avgTradeSize }}
 	li.average-win
 		span.label Avg. Win
 		p.value( class="pos" ) {{ avgWin }}

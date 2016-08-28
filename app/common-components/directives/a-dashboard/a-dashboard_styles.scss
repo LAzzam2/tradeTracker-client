@@ -1,10 +1,12 @@
 a-dashboard {
 	position: fixed;
 	width: 300px;
-	margin: $padding 0px;
 	padding: $padding;
 	z-index: 10;
-	background: white;
+	border-radius: 3px;
+	background: rgba( 255,255,255, 0.1 );
+
+	text-align: right;
 }
 
 .pos {
@@ -18,6 +20,15 @@ a-dashboard {
 	flex-flow: column;
 
 	display: flex;
+	h2 {
+		margin-bottom: 15px;
+		padding-bottom: 2px;
+		border-bottom: 1px solid rgba( 255,255,255, 0.5 );
+
+		color: rgba( 0, 0, 0, 0.4 );
+		font-size: 12px;
+		text-align: left;
+	}
 	li {
 		box-sizing: border-box;
 		cursor: hand;
@@ -32,7 +43,6 @@ a-dashboard {
 		transition: $hover-transition;
 	}
 	li:last-of-type {
-		margin-right: 0px;
 		margin-bottom: 0px;
 		border-right: 0px solid $dark-grey;
 	}
@@ -41,11 +51,20 @@ a-dashboard {
 
 		font-weight: bold;
 		font-size: 13px;
+		text-align: left;
 	}
 	.value {
+		padding-bottom: 3px;
+		border-bottom: 1px solid rgba( 255,255,255, 0.5 );
+
 		font-weight: 100;
 		font-size: 18px;
 		letter-spacing: 0.5px;
+	}
+	li:last-of-type {
+		.value {
+			border-bottom: 1px solid rgba( 255,255,255, 0 );
+		}
 	}
 	.average-win {
 		.label {

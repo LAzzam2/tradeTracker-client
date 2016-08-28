@@ -7,7 +7,9 @@ body {
 
 	width: 100%;
 	max-width: 960px;
-	margin: 100px auto;
+	margin: auto;
+	margin-top: 55px;
+	padding: $padding;
 }
 
 nav {
@@ -24,7 +26,7 @@ nav {
 	font-weight: bold;
 	font-family: $sans-serif;
 	.nav-logo-text {
-		padding: $padding;
+		padding: $padding/2 $padding/1.5;
 		background-color: $white;
 
 		color: $mint;
@@ -36,12 +38,12 @@ nav {
 
 .nav-items {
 	display: none;
-	margin: $padding 0px;
+	margin: $padding/2 0px;
 	> div {
 		cursor: hand;
 		cursor: pointer;
 		margin-right: 25px;
-		padding: $padding;
+		padding: $padding/2;
 	}
 	> div:last-of-type {
 		margin-right: $padding;

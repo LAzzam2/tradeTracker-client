@@ -9,41 +9,6 @@
 		$scope.stateName = 'tracker';
 	});
 
-	// $( document ).on( 'click', '.add-action', function( ){
-	// 	var thisTrade = $(this).parent();
-	// 	var lastActionValue = thisTrade.children('.actions').children('.action').last().children('.value').children('p').html();
-
-	// 	if( !lastActionValue ){
-	// 		return
-	// 	}else {
-	// 		addAction( thisTrade );
-	// 	}
-	// });	
-
-	// $( document ).on( 'focusout', ".quantity", function(){
-	// 	var thisAction = $(this).parent();
-	// 	calculateAction( thisAction );
-	// });
-	// $( document ).on( 'focusout', ".price", function(){
-	// 	var thisAction = $(this).parent();
-	// 	calculateAction( thisAction );
-	// });
-	// $( document ).on( 'change', ".buy-sell>select", function(){
-	// 	var thisAction = $(this).parent().parent();
-	// 	calculateAction( thisAction );
-	// });
-
-	// $( document ).on( 'click', '.add-trade', function( ){
-	// 	var lastTicker = {
-	// 		name : $('.trade').last().children('.ticker').children('.ticker-label').val(),
-	// 	}
-	// 	if( lastTicker.name == '' ){
-	// 		return
-	// 	}else {
-	// 		addTrade();
-	// 	}
-	// });
-
 	function addTrade(){
 		var trade = document.createElement('li');
 		$(trade).addClass('trade');

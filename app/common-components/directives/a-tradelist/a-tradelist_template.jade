@@ -1,7 +1,8 @@
 ul.trades
-	li.add-trade
+	li.add-trade()
 		//- ul.header
 		//- 	li Add Trade
+		h5 {{ state }}
 		div.ticker
 			input(type="text", autocomplete="off", class="ticker-label", name="ticker", placeholder="Add Trade", ng-enter='addNewTradelistItem(newItem)', ng-model='newItem' )
 	li.trade(ng-repeat='item in tradelist | reverse')
@@ -10,11 +11,12 @@ ul.trades
 				//- span.label Ticker
 				input(type="text", autocomplete="off", class="ticker-label", name="ticker", placeholder="Ticker", ng-model='item.name', ng-enter='saveTradelist(item, $index)')
 			ul.meta
-				li.trade-total( ng-class="{ pos: item.tradeValue > 0, neg: item.tradeValue < 0 }" ) {{ item.tradeValue }}
+				li.trade-total( ng-show="item.tradeValue" ng-class="{ pos: item.tradeValue > 0, neg: item.tradeValue < 0 }" ) {{ item.tradeValue }}
+				li.trade-total( ng-show="!item.tradeValue" )( ng-class="{ pos: item.tradeValue > 0, neg: item.tradeValue < 0 }" ) {{ item.direction }}
 			div.delete( ng-click='deleteTradelistItem(item, $index)' )
 				| X
 		ul.actions
-			li.action( ng-repeat="action in item.actions" ng-class="{pos: action.price * action.quantity * -1 > 0, neg: action.price * action.quantity * -1 < 0}" )
+			li.action( ng-repeat="action in item.actions" )
 				//- div.buy-sell
 					span.label b/s
 					select( ng-model='action.direction', ng-change='addTradeAction(item, action, $index)' )
@@ -25,7 +27,7 @@ ul.trades
 					input(type="text", autocomplete="off", name="quantity", placeholder="Lot Size", ng-model='action.quantity', ng-blur='addTradeAction($event, item, action, $index)')
 				div.price
 					//- span.label p
-					input(type="text", autocomplete="off", name="price" placeholder="Price", ng-model='action.price', ng-blur='addTradeAction($event, item, action, $index)')
+					input(type="text", autocomplete="off", name="price" placeholder="Price", ng-model='action.price', ng-blur='addTradeAction($event, item, action, $index)', ng-enter='addTradeAction($event, item, action, $index)')
 				div.value
 					//- span.label p/l
-					p() {{ action.price * action.quantity * -1}}
+					p( ng-if="action.price" ) {{ action.price * action.quantity * -1}}

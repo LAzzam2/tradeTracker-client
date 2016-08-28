@@ -9,6 +9,8 @@
 		$scope.tradelist = [];
 		$scope.newItem = '';
 
+		$scope.myDate = new Date();
+
 		var tradelistCopy;
 
 		$scope.loading = true;
@@ -16,7 +18,7 @@
 		var getTradelist = function() {
 			tradelistFactory.getTradelist()
 			.then(function(tradelist) {
-
+				console.log(tradelist);
 				if ((!tradelist) || (tradelist.length === 0)) {
 					tradelistCopy = angular.copy($scope.tradelist);
 					$scope.addNewTradelistItem();
@@ -43,7 +45,7 @@
 			var newItem = {
 				name: itemValue,
 				actions: [{ price: '', quantity: ''}],
-				tradeValue: '0'
+				tradeValue: ''
 			};
 
 			$scope.tradelist.push(newItem);
@@ -54,20 +56,18 @@
 			if( action.price ){
 				// Check if user wants to delete action
 				if( action.quantity == '0' || action.quantity == '' ) {
-					console.log('delete!');
 
 						var index;
 						item.actions.some(function(entry, i) {
 						    if (entry.$$hashKey == action.$$hashKey) {
 						        index = i;
-						        console.log(index);
 						        return true;
 						    }
 						});
 						item.actions.splice(index,1);
 				}
 				// Check if action closes trade
-				if( getTradeStatus( item ) != 'closed' ){
+				if( getTradeStatus( item ).direction != 'closed' ){
 					// If trade not closed, insert empty action to continue trade
 					var newItem = item.actions;
 					if( newItem[newItem.length - 1].price && newItem[newItem.length - 1].quantity ){
@@ -76,6 +76,7 @@
 				}
 
 				item.tradeValue = calculateTrade( item );
+				item.direction = getTradeStatus( item ).direction;
 				$scope.saveTradelist(item, index);
 				$rootScope.$broadcast('tradeActionUpdated', { tradelist: $scope.tradelist });
 			}
@@ -91,12 +92,13 @@
 			        sum = sum + parseInt(value['quantity']);
 		        }
 		    });
-		    if ( sum == 0 )
-		    	return 'closed';
-		    else if ( sum < 0)
-		    	return 'short';
-		    else if ( sum > 0 )
-		    	return 'long';
+		    if ( sum == 0 ){
+		    	return {direction:'closed', quantity:sum};
+		    } else if ( sum < 0){
+		    	return {direction:'short', quantity:sum};
+		    } else if ( sum > 0 ){
+		    	return {direction:'long', quantity:sum};
+		    }
 		}
 
 		function calculateTrade( item ){
@@ -110,19 +112,8 @@
 		    		sumOld = sum;
 		    		var price = (parseInt(value['price']) * parseInt(value['quantity']))*-1;
 		    		var sumNew = sum + price;
-		    		var tradeStatus = getTradeStatus( item );
-
-		    		if( tradeStatus == 'long' ){
-		    			console.log('long', sumNew, sumOld);
-				        if( sumNew < sumOld ){
-				        	sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
-				        }
-			        }else if( tradeStatus == 'short' ){
-		    			console.log('short');
-			        	if( sumNew > sumOld ){
-				        	sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
-				        }
-			        }else if( tradeStatus == 'closed' ){
+		    		var tradeDirection = getTradeStatus( item ).direction;
+		    		if( tradeDirection == 'closed' ){
 			        	sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
 			        }
 		        }
@@ -155,7 +146,7 @@
 		};
 
 		$scope.saveTradelist = function(item, index) {
-
+			console.log(item);
 			// If trying to save a newly created list item with no value,
 			// don't do anything.
 			if ((item.name === undefined) && (item._id === undefined)) {
@@ -180,7 +171,7 @@
 						});
 					}
 					updateTradelistCopy();
-					saveTradelistItemAnimation(index);
+					// saveTradelistItemAnimation(index);
 				});
 				return;
 			}
