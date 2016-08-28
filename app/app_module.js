@@ -7,6 +7,8 @@
 	var appSproutClient = angular.module('appSproutClient', [
 		'reverseFilter',
 		'appConstants',
+		'720kb.datepicker',
+		'angularMoment',
 
 		'homepage',
 		'register',

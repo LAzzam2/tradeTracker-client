@@ -1,3 +1,9 @@
+a-tradelist {
+	flex-flow: column;
+
+	display: flex;
+}
+
 .add-trade,
 .trade {
 	// box-shadow: $shadow;
@@ -64,6 +70,8 @@
 }
 .add-trade {
 	input {
+		width: 100%;
+
 		font-weight: bold;
 		font-size: 24px;
 		text-transform: uppercase;
@@ -156,10 +164,10 @@
 			border-bottom: 1px solid #ccc;
 			border-radius: 2px;
 			background-color: #ddd;
-			div:first-of-type {
+			.action-item:first-of-type {
 				padding-left: calc( #{$padding} - 5px );
 			}
-			div:last-of-type {
+			.action-item:last-of-type {
 				margin-right: 0px;
 			}
 		}
@@ -180,8 +188,11 @@
 			font-family: $sans-serif;
 		}
 	}
-	.action div,
+	.action-item,
 	.meta, {
+		flex-flow: column;
+
+		display: flex;
 		box-sizing: border-box;
 		width: 33%;
 		padding-left: 15px;
@@ -189,7 +200,7 @@
 	.meta {
 		width: calc( 33% - 20px );
 	}
-	.action div:first-of-type {
+	.action-item:first-of-type {
 		padding-left: 0px;
 	}
 	button {

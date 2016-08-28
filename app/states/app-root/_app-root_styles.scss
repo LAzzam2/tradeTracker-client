@@ -1,3 +1,9 @@
+.app-view {
+	flex-flow: column;
+
+	display: flex;
+}
+
 body {
 	background-color: $background;
 }
@@ -5,6 +11,7 @@ body {
 .app-content {
 	flex-flow: row;
 
+	display: flex;
 	width: 100%;
 	max-width: 960px;
 	margin: auto;
@@ -16,6 +23,7 @@ nav {
 	flex-flow: column;
 	flex-wrap: wrap;
 
+	display: flex;
 	position: fixed;
 	pointer-events: none;
 	width: 100%;

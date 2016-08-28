@@ -1,4 +1,7 @@
 a-dashboard {
+	flex-flow: column;
+
+	display: flex;
 	position: fixed;
 	width: 300px;
 	padding: $padding;
@@ -30,6 +33,9 @@ a-dashboard {
 		text-align: left;
 	}
 	li {
+		flex-flow: column;
+
+		display: flex;
 		box-sizing: border-box;
 		cursor: hand;
 		cursor: pointer;

@@ -9,7 +9,7 @@
 		$scope.tradelist = [];
 		$scope.newItem = '';
 
-		$scope.myDate = new Date();
+		$scope.currentDate = moment().format("M/D/YY");
 
 		var tradelistCopy;
 
@@ -44,7 +44,7 @@
 
 			var newItem = {
 				name: itemValue,
-				actions: [{ price: '', quantity: ''}],
+				actions: [{ date: moment().format("M/D/YY"), price: '', quantity: ''}],
 				tradeValue: ''
 			};
 
@@ -66,19 +66,24 @@
 						});
 						item.actions.splice(index,1);
 				}
-				// Check if action closes trade
-				if( getTradeStatus( item ).direction != 'closed' ){
-					// If trade not closed, insert empty action to continue trade
-					var newItem = item.actions;
-					if( newItem[newItem.length - 1].price && newItem[newItem.length - 1].quantity ){
-						newItem.push({ price: '', quantity: ''});
+				// Check if there's a date
+				if( !action.date && action.price && action.quantity ){
+					alert('Please specify a date before continuing')
+				} else{
+					// Check if action closes trade
+					if( getTradeStatus( item ).direction != 'closed' ){
+						// If trade not closed, insert empty action to continue trade
+						var newItem = item.actions;
+						if( newItem[newItem.length - 1].price && newItem[newItem.length - 1].quantity ){
+							console.log(item.actions[item.actions.length-1].date);
+							newItem.push({ date: item.actions[item.actions.length-1].date, price: '', quantity: ''});
+						}
 					}
+					item.tradeValue = calculateTrade( item );
+					item.direction = getTradeStatus( item ).direction;
+					$scope.saveTradelist(item, index);
+					$rootScope.$broadcast('tradeActionUpdated', { tradelist: $scope.tradelist });
 				}
-
-				item.tradeValue = calculateTrade( item );
-				item.direction = getTradeStatus( item ).direction;
-				$scope.saveTradelist(item, index);
-				$rootScope.$broadcast('tradeActionUpdated', { tradelist: $scope.tradelist });
 			}
 		}
 

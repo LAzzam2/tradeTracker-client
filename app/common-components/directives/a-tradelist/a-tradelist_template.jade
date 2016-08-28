@@ -17,17 +17,21 @@ ul.trades
 				| X
 		ul.actions
 			li.action( ng-repeat="action in item.actions" )
+				div.action-item.date
+					datepicker( date-format="M/d/yy" date-min-limit="{{ currentDate }}" )
+						input( ng-model='action.date' type='text' ng-change='addTradeAction($event, item, action, $index)' placeholder="{{currentDate}}"  )
+
 				//- div.buy-sell
 					span.label b/s
 					select( ng-model='action.direction', ng-change='addTradeAction(item, action, $index)' )
 						option(value='-1') Buy
 						option(value='1') Sell
-				div.quantity
+				div.action-item.quantity
 					//- span.label q
 					input(type="text", autocomplete="off", name="quantity", placeholder="Lot Size", ng-model='action.quantity', ng-blur='addTradeAction($event, item, action, $index)')
-				div.price
+				div.action-item.price
 					//- span.label p
 					input(type="text", autocomplete="off", name="price" placeholder="Price", ng-model='action.price', ng-blur='addTradeAction($event, item, action, $index)', ng-enter='addTradeAction($event, item, action, $index)')
-				div.value
+				div.action-item.value
 					//- span.label p/l
 					p( ng-if="action.price" ) {{ action.price * action.quantity * -1}}
