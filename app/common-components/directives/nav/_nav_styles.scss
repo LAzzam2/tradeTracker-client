@@ -7,8 +7,8 @@ header {
 	top: 0;
 	left: 0;
 	padding: $padding;
-	z-index: 10;
-	background: 0;
+	z-index: 100;
+	background: $background;
 	.logo {
 		div {
 			font-weight: 800;
@@ -39,6 +39,8 @@ header {
 		}
 	}
 	.nav {
+		align-items: center;
+
 		margin-left: auto;
 
 		font-weight: 100;

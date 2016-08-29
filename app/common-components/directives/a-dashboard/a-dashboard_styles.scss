@@ -40,6 +40,7 @@ a-dashboard {
 		cursor: pointer;
 		margin-right: 5px;
 		margin-bottom: 15px;
+		border-bottom: 1px solid rgba( 255,255,255, 0.5 );
 
 		color: $dark-grey;
 		font-weight: 100;
@@ -50,6 +51,7 @@ a-dashboard {
 	li:last-of-type {
 		margin-bottom: 0px;
 		border-right: 0px solid $dark-grey;
+		border-bottom: 1px solid rgba( 255,255,255, 0 );
 	}
 	.label {
 		margin-bottom: 5px;
@@ -60,16 +62,10 @@ a-dashboard {
 	}
 	.value {
 		padding-bottom: 3px;
-		border-bottom: 1px solid rgba( 255,255,255, 0.5 );
 
 		font-weight: 100;
 		font-size: 18px;
 		letter-spacing: 0.5px;
-	}
-	li:last-of-type {
-		.value {
-			border-bottom: 1px solid rgba( 255,255,255, 0 );
-		}
 	}
 	.average-win {
 		.label {
@@ -79,6 +75,15 @@ a-dashboard {
 	.average-loss {
 		.label {
 			color: $pred;
+		}
+	}
+	.wins,
+	.losses {
+		flex-flow: row;
+
+		margin-top: 25px;
+		p {
+			margin-left: auto;
 		}
 	}
 }

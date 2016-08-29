@@ -15,10 +15,12 @@
 
 		$scope.$on('tradeActionUpdated', function(event, args) {
 		    var tradelist = args.tradelist;
-			 calculateValue( tradelist );
-			 calculateAvgWin( tradelist );
-			 calculateAvgLoss( tradelist );
-			 calculateAvgTradeSize( tradelist );
+				calculateValue( tradelist );
+				$scope.avgWin = calculateAvgWin( tradelist ).avg;
+				$scope.winCount = calculateAvgWin( tradelist ).count;
+				$scope.avgLoss = calculateAvgLoss( tradelist ).avg;
+				$scope.lossCount = calculateAvgLoss( tradelist ).count;
+				calculateAvgTradeSize( tradelist );
 		});
 
 		var getTradelist = function() {
@@ -40,22 +42,32 @@
 
 		function calculateAvgWin( tradelist ){
 			var sum = 0;
+			var count = 0;
 			tradelist.forEach(function(entry) {
 				if( entry.tradeValue > 0 ){
+					++count;
 			    	sum += parseInt(entry.tradeValue);
 			    }
 			});
-			$scope.avgWin = sum;
+			if( count == 0 ){
+				count = 1;
+			}
+			return {avg: (sum / count).toFixed(2), count: count};
 		};
 
 		function calculateAvgLoss( tradelist ){
 			var sum = 0;
+			var count = 0;
 			tradelist.forEach(function(entry) {
 				if( entry.tradeValue < 0 ){
+					++count
 			    	sum += parseInt(entry.tradeValue);
 			    }
 			});
-			$scope.avgLoss = sum;
+			if( count == 0 ){
+				count = 1;
+			}
+			return {avg: (sum / count).toFixed(2), count: count};
 		};
 
 		function calculateAvgTradeSize( tradelist ){

@@ -105,7 +105,7 @@
 		    var sum = 0;
 		    angular.forEach(data,function(value){
 		    	if(value['quantity']){
-			        sum = sum + parseInt(value['quantity']);
+			        sum = sum + Number(value['quantity']);
 		        }
 		    });
 		    if ( sum == 0 ){
@@ -119,23 +119,21 @@
 
 		function calculateTrade( item ){
 			var data = item.actions;
-		    if (angular.isUndefined(data) && angular.isUndefined('price')  && angular.isUndefined('quantity')) 
-		        return 0; 
 		    var sum = 0;
 		    var sumOld = 0;
 		    angular.forEach(data,function(value){
 		    	if(value['price'] && value['quantity']){
 		    		sumOld = sum;
-		    		var price = (parseInt(value['price']) * parseInt(value['quantity']))*-1;
+		    		var price = (Number(value['price']) * Number(value['quantity']))*-1;
 		    		var sumNew = sum + price;
 		    		var tradeDirection = getTradeStatus( item ).direction;
 		    		if( tradeDirection == 'closed' ){
-			        	sum = sum + ((parseInt(value['price']) * parseInt(value['quantity'])*-1));
+			        	sum = sum + ((Number(value['price']) * Number(value['quantity'])*-1));
 			        }
 		        }
 		    });
 		    if( sumOld != 0 ){
-		    	return sum;
+		    	return sum.toFixed(2);
 		    }
 		}
 

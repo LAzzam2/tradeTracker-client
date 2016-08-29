@@ -27,7 +27,7 @@ ul.tracker.trades( ng-show="subState.tracker" )
 					input(type="text", autocomplete="off", name="price" placeholder="Price", ng-model='action.price', ng-blur='addTradeAction($event, item, action, $index)', ng-enter='addTradeAction($event, item, action, $index)')
 				div.action-item.value
 					//- span.label p/l
-					p( ng-if="action.price" ) {{ action.price * action.quantity * -1}}
+					p( ng-if="action.price" ) {{ action.price * action.quantity * -1 | number:2 }}
 	//- li.trade.empty( ng-hide="tradelist.length > 0" )
 		h3 You haven't made any trades yet. Add a symbol to get started.
 
