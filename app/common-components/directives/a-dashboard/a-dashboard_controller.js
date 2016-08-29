@@ -34,7 +34,7 @@
 			var sum = 0;
 			tradelist.forEach(function(entry) {
 				if( entry.tradeValue ){
-			    	sum += parseInt(entry.tradeValue);
+			    	sum += Number(entry.tradeValue);
 			    }
 			});
 			$scope.accountValue = sum;
@@ -46,12 +46,9 @@
 			tradelist.forEach(function(entry) {
 				if( entry.tradeValue > 0 ){
 					++count;
-			    	sum += parseInt(entry.tradeValue);
+			    	sum += Number(entry.tradeValue);
 			    }
 			});
-			if( count == 0 ){
-				count = 1;
-			}
 			return {avg: (sum / count).toFixed(2), count: count};
 		};
 
@@ -61,12 +58,10 @@
 			tradelist.forEach(function(entry) {
 				if( entry.tradeValue < 0 ){
 					++count
-			    	sum += parseInt(entry.tradeValue);
+			    	sum += Number(entry.tradeValue);
 			    }
 			});
-			if( count == 0 ){
-				count = 1;
-			}
+			console.log('sum: ', sum);
 			return {avg: (sum / count).toFixed(2), count: count};
 		};
 
