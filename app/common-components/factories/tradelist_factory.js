@@ -35,6 +35,31 @@
 			return promise;
 		};
 
+		tradelistFactoryApi.getCommunityTradelist = function() {
+			var deferred = $q.defer();
+			var promise = deferred.promise;
+
+			$http({
+
+				method: 'get',
+				withCredentials: true,
+				url: appConstants.BACKEND_URL + '/api/community/tradelist'
+
+			})
+			.success(function(data) {
+
+				tradelistFactoryApi.list = data.tradelistItems;
+
+				deferred.resolve(data.tradelistItems);
+			})
+			.error(function(error) {
+				console.log('Get tradelist error: ', error);
+				deferred.reject(error);
+			});
+
+			return promise;
+		};
+
 		tradelistFactoryApi.upsertTradelistItem = function(item) {
 			var deferred = $q.defer();
 			var promise = deferred.promise;

@@ -8,15 +8,16 @@
 	display: flex;
 	width: 100vw;
 	height: 100vh;
-	h2 {
+	.tag {
 		width: 80%;
-		margin-bottom: 15px;
+		max-width: 400px;
+		margin-bottom: 35px;
 
 		color: white;
-		color: $mint;
 		font-weight: bold;
 		font-size: 20px;
 		text-align: center;
+		text-shadow: 0px 2px 3px rgba( 0, 0, 0, 0.15 );
 	}
 	h1 {
 		margin-bottom: 15px;
@@ -30,5 +31,40 @@
 
 		color: $mint;
 		font-size: 16px;
+	}
+}
+
+
+.home-dash {
+	flex-flow: row;
+	flex-wrap: wrap;
+
+	width: 80%;
+	max-width: 400px;
+	margin-bottom: 15px;
+	padding: $padding;
+	background: rgba( 255,255,255, 0.45 );
+	li {
+		width: calc((100% / 2) - 10px);
+		margin: 0;
+		margin-bottom: 10px;
+		padding: 0;
+		padding-left: 10px;
+		border-bottom: 0;
+		border-left: $border-bottom;
+	}
+	li:nth-of-type(5),
+	li:nth-of-type(6) {
+		margin-bottom: 0px;
+	}
+
+	.wins,
+	.losses {
+		flex-flow: column;
+
+		margin-top: 0px;
+		p {
+			margin-left: 0;
+		}
 	}
 }

@@ -44,6 +44,18 @@
 	margin-bottom: 15px;
 }
 
+.button-text {
+	display: inline-block;
+	margin: auto;
+	padding: 5px 10px;
+	border: 1px solid $mint;
+	border-radius: 3px;
+
+	color: $mint;
+	font-size: 14px;
+	text-align: center;
+}
+
 input[type=number] {
 	-webkit-appearance: none;
 	-moz-appearance: none;

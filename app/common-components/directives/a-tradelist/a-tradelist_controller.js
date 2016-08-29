@@ -17,8 +17,18 @@
 
 		$scope.loading = true;
 
+		console.log($scope.subState);
+
+		if($scope.subState.tracker){
+			var tradelistFetch = tradelistFactory.getTradelist()
+		}
+		if($scope.subState.discover){
+			var tradelistFetch = tradelistFactory.getCommunityTradelist()
+		}
+
+
 		var getTradelist = function() {
-			tradelistFactory.getTradelist()
+			tradelistFetch
 			.then(function(tradelist) {
 				console.log(tradelist);
 				if ((!tradelist) || (tradelist.length === 0)) {
@@ -35,7 +45,6 @@
 				}, 200);
 			});
 		};
-
 		getTradelist();
 		tradelistCopy = angular.copy($scope.tradelist);
 

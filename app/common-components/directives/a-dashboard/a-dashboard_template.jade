@@ -9,17 +9,17 @@ ul.dashboard
 		span.label Avg. Trade Size
 		p.value( ng-if="!avgTradeSize" ) 0
 		p.value( ng-if="avgTradeSize" ) {{ avgTradeSize }}
-	li.wins( ng-if="winCount"  )
+	li.wins( ng-if="winCount" )
 		span.label Wins
 		p.value {{ winCount }}
 	li.average-win( ng-if="winCount" )
 		span.label Avg. Win
 		p.value( ng-if="!avgWin" ) 0
 		p.value( ng-if="avgWin" class="pos" ) {{ avgWin }}
-	li.losses
+	li.losses( ng-if="lossCount" )
 		span.label Losses
-		p.value( ng-if="lossCount" ) {{ lossCount }}
-	li.average-loss
+		p.value {{ lossCount }}
+	li.average-loss( ng-if="lossCount" )
 		span.label Avg. Loss
 		p.value( ng-if="!avgLoss" ) 0
 		p.value( ng-if="avgLoss" class="neg" ) {{ avgLoss }}
