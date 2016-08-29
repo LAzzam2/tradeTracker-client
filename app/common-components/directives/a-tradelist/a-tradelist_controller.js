@@ -7,14 +7,11 @@
 	aTradelist.controller('ATradelistController', function( $scope, $rootScope, tradelistFactory, $timeout) {
 
 		$scope.subState = $scope.$parent;
-		
+
 		$scope.tradelist = [];
 		$scope.newItem = '';
 
 		$scope.currentDate = moment().format("M/D/YY");
-
-		
-		console.log($scope.auth);
 
 		var tradelistCopy;
 
@@ -49,7 +46,7 @@
 
 			var newItem = {
 				name: itemValue,
-				actions: [{ price: '', quantity: ''}],
+				actions: [{ date: moment().format("M/D/YY"), price: '', quantity: ''}],
 				tradeValue: ''
 			};
 
@@ -73,14 +70,13 @@
 				}
 				// Check if there's a date
 				if( !action.date && action.price && action.quantity ){
-					alert('Please specify a date before continuing')
+					alert('Please specify a date for this action.')
 				} else{
 					// Check if action closes trade
 					if( getTradeStatus( item ).direction != 'closed' ){
 						// If trade not closed, insert empty action to continue trade
 						var newItem = item.actions;
 						if( newItem[newItem.length - 1].price && newItem[newItem.length - 1].quantity ){
-							console.log(item.actions[item.actions.length-1].date);
 							newItem.push({ price: '', quantity: ''});
 						}
 					}
@@ -90,7 +86,6 @@
 					    	if( !value['quantity'] || !value['price'] ){
 					    		var index = item.actions.indexOf(value)
 					    		item.actions.splice(index, 1);
-					    		console.log(value);
 					        }
 					    });
 					}

@@ -9,11 +9,26 @@
 	width: 100vw;
 	height: 100vh;
 	h2 {
+		width: 80%;
 		margin-bottom: 15px;
 
 		color: white;
+		color: $mint;
 		font-weight: bold;
-		font-size: 24px;
-		text-shadow: 0px 2px 5px rgba( 0, 0, 0, 0.15 );
+		font-size: 20px;
+		text-align: center;
+	}
+	h1 {
+		margin-bottom: 15px;
+
+		color: $mint;
+		font-weight: bold;
+		text-shadow: 0px 2px 10px rgba( 0, 0, 0, 0.05 );
+	}
+	button {
+		padding: 10px 15px;
+
+		color: $mint;
+		font-size: 16px;
 	}
 }

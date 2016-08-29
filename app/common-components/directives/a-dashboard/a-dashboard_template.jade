@@ -3,13 +3,17 @@ ul.dashboard
 	h2( ng-show="subState.discover" ) Community Stats
 	li.account-total
 		span.label( ng-class=" { pos: accountValue > 0, neg: accountValue < 0 } " ) P/L Total
-		p.value( ng-class=" { pos: accountValue > 0, neg: accountValue < 0 } " ) {{ accountValue }}
+		p.value( ng-if="!accountValue" ) 0
+		p.value( ng-if="accountValue" ng-class=" { pos: accountValue > 0, neg: accountValue < 0 } " ) {{ accountValue }}
 	li.average-trade-size
 		span.label Avg. Trade Size
-		p.value( ) {{ avgTradeSize }}
+		p.value( ng-if="!avgTradeSize" ) 0
+		p.value( ng-if="avgTradeSize" ) {{ avgTradeSize }}
 	li.average-win
 		span.label Avg. Win
-		p.value( class="pos" ) {{ avgWin }}
+		p.value( ng-if="!avgWin" ) 0
+		p.value( ng-if="avgWin" class="pos" ) {{ avgWin }}
 	li.average-loss
 		span.label Avg. Loss
-		p.value( class="neg" ) {{ avgLoss }}
+		p.value( ng-if="!avgLoss" ) 0
+		p.value( ng-if="avgLoss" class="neg" ) {{ avgLoss }}

@@ -1,0 +1,16 @@
+header( ng-model="user" )
+	.logo
+		.logo-text( ui-sref='homepage' )
+			| Stockr
+	.nav( ng-show="user.name" )
+		.home-watchlist-button.small-outline-button( ui-sref='app-root.tracker' )
+			| Track
+		.home-watchlist-button.small-outline-button( ui-sref='app-root.discover' )
+			| Discover
+		.home-logout-button.small-outline-button( ng-click='logout(  )' )
+			| Logout
+	.nav( ng-hide="user.name" )
+		.home-register-button.big-green-button( ui-sref='register' )
+			| Register
+		.home-login-button.small-outline-button( ui-sref='login' )
+			| Login

@@ -14,6 +14,7 @@
 		'register',
 		'login',
 		'appRoot',
+		'nav',
 		'ngAnimate',
 		'storageFactory',
 		'userFactory'
